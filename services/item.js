@@ -21,6 +21,21 @@ var create = function(data, cb){
 
 };
 
+var getItemByWhere = function (where, option, cb) {
+    Item.forge(where)
+        .fetch(option)
+        .then(function (item) {
+            return cb(null, item);
+        })
+        .catch(function (err) {
+            return cb(err, null);
+    });
+};
+
+var getItemById = function(id, cb) {
+    getItemByWhere({id: id}, cb);
+};
+
 module.exports = {
     create: create
 };
