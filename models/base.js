@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var config = require('../config')
 
 var knex = require('knex')({
   client: 'pg',
@@ -6,9 +7,9 @@ var knex = require('knex')({
   connection: {
     "host"      : "localhost",
     "port"      : 5432,
-    "user"      : "postgres",
+    "user"      : "Arthur",
     "password"  : "Lmx77889",
-    "database"  : "items",
+    "database"  : "todo",
     "charset"   : "utf8"
     }
 });

@@ -3,9 +3,10 @@
  */
 'use strict';
 
-var Item = require('./models/item');
+var Item = require('../models/item');
+var Items = require('../collections/items')
 
-
+//creat an item
 var create = function(data, cb){
     Item
         .forge(data)
@@ -21,7 +22,25 @@ var create = function(data, cb){
 
 };
 
-var getItemByWhere = function (where, option, cb) {
+// return all the items
+var getItems = function(option, cb) {
+    Items.forge()
+        .fetch(option)
+        .then(function (items) {
+            if (items) {
+                return cb(null, items.toJSON());
+            } else {
+               return cb(null, []);
+            }
+    })
+    .catch(function (err) {
+        console.log(err);
+        return cb(err, null);
+    })
+};
+
+// Ultimate search function
+var getItemByWhere = function(where, option, cb) {
     Item.forge(where)
         .fetch(option)
         .then(function (item) {
@@ -32,10 +51,14 @@ var getItemByWhere = function (where, option, cb) {
     });
 };
 
+//search item based on id
 var getItemById = function(id, cb) {
     getItemByWhere({id: id}, cb);
 };
 
+
 module.exports = {
-    create: create
+    create: create,
+    getItemById: getItemById,
+    getItems: getItems
 };
