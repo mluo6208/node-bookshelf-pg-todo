@@ -22,6 +22,4 @@ var Item = Bookshelf.Model.extend({
   tableName: 'items'
 });
 
-Item.collection().fetch().then(function (collection) {
-  console.log(collection);
-});
+
