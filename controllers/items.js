@@ -1,5 +1,5 @@
 /**
- * Created by ArthurL on 22/09/2016.
+ * Created by ArthurLa on 22/09/2016.
  */
 
 var ItemService = require('../services/item');
@@ -13,7 +13,19 @@ module.exports.createTodo = function (req, res, next){
 
 module.exports.listTodos = function (req, res, next) {
     ItemService.getItems([], function(err, items) {
+
         console.log(items);
-        res.render('index', items);
+        res.render('items', items);
     })
+};
+
+module.exports.findTodoById = function (req, res, next) {
+    var id = req.body.id;
+
+    ItemService.getItemById(id, function(item, cb) {
+        if (err) {
+          return console.error('Can not find item', err);
+        }
+        res.render('index', item);
+    });
 };

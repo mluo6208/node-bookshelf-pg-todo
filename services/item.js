@@ -4,7 +4,7 @@
 'use strict';
 
 var Item = require('../models/item');
-var Items = require('../collections/items')
+var Items = require('../collections/items');
 
 //creat an item
 var create = function(data, cb){
@@ -32,11 +32,11 @@ var getItems = function(option, cb) {
             } else {
                return cb(null, []);
             }
-    })
-    .catch(function (err) {
-        console.log(err);
-        return cb(err, null);
-    })
+        })
+        .catch(function (err) {
+            console.log(err);
+            return cb(err, null);
+        })
 };
 
 // Ultimate search function
@@ -51,6 +51,17 @@ var getItemByWhere = function(where, option, cb) {
     });
 };
 
+var getItemsByWhere = function(where, option, cb) {
+    Item.forge(where)
+        .fetchAll(option)
+        .then(function (items) {
+             return cb(null, items);
+        })
+        .catch(function (err) {
+            return cb(err, null);
+        })
+};
+
 //search item based on id
 var getItemById = function(id, cb) {
     getItemByWhere({id: id}, cb);
@@ -60,5 +71,6 @@ var getItemById = function(id, cb) {
 module.exports = {
     create: create,
     getItemById: getItemById,
+    getItemsByWhere: getItemsByWhere,
     getItems: getItems
 };

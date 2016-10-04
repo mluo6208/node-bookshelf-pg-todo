@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to Items
+
+
+    each item in items
+        p #{item.id}
+        p #{item.text}
+        p #{item.complete}
+
