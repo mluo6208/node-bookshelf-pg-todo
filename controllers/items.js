@@ -13,14 +13,13 @@ module.exports.createTodo = function (req, res, next){
 
 module.exports.listTodos = function (req, res, next) {
     ItemService.getItems([], function(err, items) {
-
       if (err) {
         return err;
       }
-
       data = {items: items};
+      
       res.render('items', data);
-    })
+    });
 };
 
 module.exports.findTodoById = function (req, res, next) {

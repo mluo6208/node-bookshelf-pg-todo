@@ -67,6 +67,11 @@ var getItemById = function(id, cb) {
     getItemByWhere({id: id}, cb);
 };
 
+var updateItemById = function(id, option, cb) {
+    getItemById(id, function(err, item) {
+
+    });
+};
 
 module.exports = {
     create: create,
