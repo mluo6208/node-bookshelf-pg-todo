@@ -20,5 +20,10 @@
     "pg": "^6.1.0",
     "request": "^2.74.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "gulp-jshint": "^2.0.1",
+    "gulp-nodemon": "^2.2.1",
+    "jshint": "^2.9.3"
   }
 }
